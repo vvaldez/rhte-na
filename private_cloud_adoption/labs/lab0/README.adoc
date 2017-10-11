@@ -28,7 +28,7 @@ Your OpenStack lab environment contains the following:
 * username: admin
 * password: <instructor will provide>
 * external network: flat
-* external subnet: 192.168.56.0/24 DNS: 192.168.56.252
+* external subnet: 192.168.56.0/24
 * external floating ip pool: 192.168.56.100 - 192.168.56.200
 
 === Access Lab Workstation
@@ -70,8 +70,6 @@ Due to some last minute changes the following changes are needed in your envirom
 CONFIG_NEUTRON_ML2_TYPE_DRIVERS=flat,vxlan
 ----
 +
-. Connect to the controller and both compute nodes and edit `/etc/yum.repos.d/open.repo`
-. Remove the all repos for `ceph` after line 60
 . Run `PackStack` as such:
 +
 ----

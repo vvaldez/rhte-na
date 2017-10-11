@@ -245,10 +245,10 @@ Create a subnet that will be used by instances on the tenant network previously 
 [width="90%",frame="topbot"]
 |==================
 |Subnet Name | TATE_CLI
-|Network Address | 192.168.56.0/24
+|Network Address | 10.20.17.0/24
 |Gateway | 
-|Allocation Start | 192.168.56.100
-|Allocation End | 192.168.56.200
+|Allocation Start |
+|Allocation End | 
 |==================
 
 
@@ -258,20 +258,19 @@ ifdef::showdetailed[]
 -------------------
 [root@ctrl01 ~(keystone_tate-cli-admin)]# openstack subnet create \
     --project TATE_CLI \
-    --subnet-range 192.168.56.0/24  \
-    --dhcp --gateway 10.43.21.1 \
-    --network TATE_CLI \
-    --allocation-pool start=192.168.56.100,end=192.168.56.200 TATE_CLI
+    --subnet-range 10.20.17.0/24  \
+    --dhcp \
+    --network TATE_CLI
 +-------------------+--------------------------------------+
 | Field             | Value                                |
 +-------------------+--------------------------------------+
-| allocation_pools  | 192.168.56.100-192.168.56.200        |
-| cidr              | 192.168.56.0/24                      |
+| allocation_pools  |                                      |
+| cidr              | 10.20.17.0/24                        |
 | created_at        | 2017-04-30T22:21:42Z                 |
 | description       |                                      |
 | dns_nameservers   |                                      |
 | enable_dhcp       | True                                 |
-| gateway_ip        | 192.168.56.252                       |
+| gateway_ip        | 10.20.17.1                           |
 | headers           |                                      |
 | host_routes       |                                      |
 | id                | 30a9e16d-b8c8-426c-8e3b-5779c512021f |
@@ -377,7 +376,7 @@ In cases with multiple routers, the string following `qrouter` corresponds to th
        valid_lft forever preferred_lft forever
 11: qr-ad087375-4d: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1450 qdisc noqueue state UNKNOWN qlen 1000
     link/ether fa:16:3e:72:d8:3d brd ff:ff:ff:ff:ff:ff
-    inet 10.43.21.1/24 brd 10.43.21.255 scope global qr-ad087375-4d
+    inet 10.20.17.1/24 brd 10.20.17.255 scope global qr-ad087375-4d
        valid_lft forever preferred_lft forever
     inet6 fe80::f816:3eff:fe72:d83d/64 scope link
        valid_lft forever preferred_lft forever
@@ -574,11 +573,11 @@ It may take some time for the instance to become active and accept logins, due l
 ifdef::showdetailed[]
 
 -------------------
-[root@ctrl01 nova(keystone_tate-cli-admin)]# ip netns exec qrouter-6980ef1b-439e-4d8f-aed4-f346bb9024f5 ssh -l cloud-user -i ~/.ssh/id_rsa 10.43.21.17
-The authenticity of host '10.43.21.17 (10.43.21.17)' can't be established.
+[root@ctrl01 nova(keystone_tate-cli-admin)]# ip netns exec qrouter-6980ef1b-439e-4d8f-aed4-f346bb9024f5 ssh -l cloud-user -i ~/.ssh/id_rsa 10.20.17.17
+The authenticity of host '10.20.17.17 (10.20.17.17)' can't be established.
 ECDSA key fingerprint is 51:e0:12:4a:97:e3:f4:c5:1f:b6:c7:bf:0e:78:84:37.
 Are you sure you want to continue connecting (yes/no)? yes
-Warning: Permanently added '10.43.21.17' (ECDSA) to the list of known hosts.
+Warning: Permanently added '10.20.17.17' (ECDSA) to the list of known hosts.
 [cloud-user@example-rhel7 ~]$
 -------------------
 
